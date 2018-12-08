@@ -16,8 +16,8 @@ namespace AuctionApp.API.Models
         // Usuário
         public string Username { get; set; }
 
-        // Senha
-        public string Password { get; set; }
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
 
         // Cpf
         public string Cpf { get; set; }

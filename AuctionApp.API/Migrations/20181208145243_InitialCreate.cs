@@ -16,7 +16,8 @@ namespace AuctionApp.API.Migrations
                     Name = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Username = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
+                    PasswordHash = table.Column<byte[]>(nullable: true),
+                    PasswordSalt = table.Column<byte[]>(nullable: true),
                     Cpf = table.Column<string>(nullable: true),
                     IsAdministrator = table.Column<bool>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false)
