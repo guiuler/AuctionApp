@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AuctionApp.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ namespace AuctionApp.API.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         // GET api/auctions
         [HttpGet]
         public async Task<IActionResult> GetAuctions()
@@ -25,6 +27,7 @@ namespace AuctionApp.API.Controllers
             return Ok(auctions);
         }
 
+        [AllowAnonymous]
         // GET api/auctions/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAuction(int id)
