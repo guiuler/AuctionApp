@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AuctionApp.API.Models
@@ -9,6 +10,9 @@ namespace AuctionApp.API.Models
 
         // Valor do lance
         public double Value { get; set; }
+
+        // Data do lance
+        public DateTime DateOfBid { get; set; }
         
         // Leilão ao qual o lance pertence
         [ForeignKey("Auction")]

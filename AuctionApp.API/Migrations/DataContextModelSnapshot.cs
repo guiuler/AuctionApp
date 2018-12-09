@@ -47,6 +47,8 @@ namespace AuctionApp.API.Migrations
 
                     b.Property<int>("AuctionId");
 
+                    b.Property<DateTime>("DateOfBid");
+
                     b.Property<int>("UserId");
 
                     b.Property<double>("Value");

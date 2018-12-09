@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuctionApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20181208145243_InitialCreate")]
+    [Migration("20181209140432_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,8 @@ namespace AuctionApp.API.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AuctionId");
+
+                    b.Property<DateTime>("DateOfBid");
 
                     b.Property<int>("UserId");
 

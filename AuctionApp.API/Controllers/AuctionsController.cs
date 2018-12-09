@@ -1,38 +1,48 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AuctionApp.API.Data;
+using AuctionApp.API.Dtos;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuctionApp.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuctionsController : ControllerBase
     {
-        private readonly DataContext _context;
-        public AuctionsController(DataContext context)
+        private readonly IAuctionRepository _repo;
+        private readonly IMapper _mapper;
+        public AuctionsController(IAuctionRepository repo, IMapper mapper)
         {
-            _context = context;
+            _mapper = mapper;
+            _repo = repo;
         }
 
         // GET api/auctions
         [HttpGet]
         public async Task<IActionResult> GetAuctions()
         {
-            var auctions = await _context.Auctions.ToListAsync();
+            var auctions = await _repo.GetAuctions();
 
-            return Ok(auctions);
+            var auctionsToReturn = _mapper.Map<IEnumerable<AuctionForListDto>>(auctions);
+
+            return Ok(auctionsToReturn);
         }
 
         // GET api/auctions/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAuction(int id)
         {
-            var auction = await _context.Auctions.FirstOrDefaultAsync(x => x.Id == id);
+            var auction = await _repo.GetAuction(id);
 
-            return Ok(auction);
+            var auctionToReturn = _mapper.Map<AuctionForDetailedDto>(auction);
+
+            return Ok(auctionToReturn);
         }
     }
 }

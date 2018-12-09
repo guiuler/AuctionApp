@@ -58,6 +58,7 @@ namespace AuctionApp.API.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Value = table.Column<double>(nullable: false),
+                    DateOfBid = table.Column<DateTime>(nullable: false),
                     AuctionId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
                 },

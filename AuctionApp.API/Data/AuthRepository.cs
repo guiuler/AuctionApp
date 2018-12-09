@@ -20,6 +20,9 @@ namespace AuctionApp.API.Data
             if (user == null)
                 return null;
 
+            if (!user.IsActive)
+                return null;
+
             if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
 
