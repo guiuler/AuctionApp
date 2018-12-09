@@ -24,9 +24,6 @@ namespace AuctionApp.API.Dtos
         // Data final do leilão
         public DateTime FinalDate { get; set; }
 
-        // Nome do responsável pelo leilão
-        public string InChargeName {get; set;}
-
         // Lista de lances cadastrados para o leilão
         public ICollection<AuctionBidForListDto> AuctionBids { get; set; }
     }

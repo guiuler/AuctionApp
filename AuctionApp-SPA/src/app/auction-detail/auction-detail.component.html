@@ -1,0 +1,40 @@
+<div class="container mt-4">  
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="https://png.pngtree.com/element_origin_min_pic/29/04/20/1657235dbe3e9f4.jpg" alt="{{auction?.name}}">
+        <div class="card-body">
+          <div>
+            <strong>Nome:</strong>
+            <p>{{auction?.name}}</p>
+            <strong>Lance inicial:</strong>
+            <p>{{auction?.initialValue}}</p>
+            <strong>Novo ou usado:</strong>
+            <p>{{auction?.isNew}}</p>
+            <strong>Duração do leilão:</strong>
+            <p>{{auction?.initialDate}} até {{auction?.finalDate}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card header">
+            <h2>Últimos lances:</h2>
+        </div>
+        <div class="card-body">
+
+        </div>
+        <div class="card-footer">
+          <div>
+              <input id="number" type="number" min=0 >
+            <button class="btn btn-primary">Dê seu lance</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+
+    </div>
+  </div>
+</div>

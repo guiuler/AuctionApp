@@ -39,7 +39,7 @@ namespace AuctionApp.API.Controllers
                 Email = userForRegisterDto.Email,
                 Cpf = userForRegisterDto.Cpf,
                 IsAdministrator = userForRegisterDto.IsAdministrator,
-                IsActive = userForRegisterDto.IsActive
+                IsActive = true
             };
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);

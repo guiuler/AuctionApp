@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Auction } from '../_models/auction';
+import { AuctionService } from '../_services/auction.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-auction',
@@ -7,19 +10,19 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./auction.component.css']
 })
 export class AuctionComponent implements OnInit {
-  auctions: any;
+  auctions: Auction[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private auctionService: AuctionService, private alertifyService: AlertifyService) { }
 
   ngOnInit() {
-    this.getAuctions();
+    this.loadAuctions();
   }
 
-  getAuctions() {
-    this.http.get('http://localhost:5000/api/auctions').subscribe(response => {
-      this.auctions = response;
+  loadAuctions() {
+    this.auctionService.getAuctions().subscribe((auctions: Auction[]) => {
+      this.auctions = auctions;
     }, error => {
-      console.log(error);
+      this.alertifyService.error(error);
     });
   }
 }

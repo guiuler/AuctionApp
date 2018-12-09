@@ -12,11 +12,5 @@ namespace AuctionApp.API.Dtos
 
         // Data do lance
         public DateTime DateOfBid { get; set; }
-        
-        // Nome do leilão
-        public string AuctionName { get; set; }     
-
-        // Usuário que deu o lance
-        public string BidUser { get; set; }
     }
 }

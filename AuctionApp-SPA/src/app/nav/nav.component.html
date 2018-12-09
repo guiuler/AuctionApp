@@ -7,10 +7,7 @@
         <a class="nav-link" [routerLink]="['/auctions']">Leilões</a>  
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/auctionbids']">Lances</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/users']">Usuários</a>
+        <a class="nav-link" [routerLink]="['/auctionbids']">Meus Lances</a>
       </li>
     </ul>
   
@@ -21,6 +18,8 @@
     
       <div class="dropdown-menu mt-3" *dropdownMenu>
         <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Editar perfil</a>
+        <div class="dropdown-item"></div>
+        <a class="dropdown-item" href="#"><i class="fa fa-times"></i> Desativar minha conta</a>
         <div class="dropdown-item"></div>
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a>
       </div>

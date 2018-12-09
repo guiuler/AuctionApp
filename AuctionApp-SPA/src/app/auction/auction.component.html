@@ -1,3 +1,8 @@
-<p *ngFor="let auction of auctions">
-  {{auction.id}}, {{auction.name}}
-</p>
+<div class="container">
+  <br>
+  <div class="row">
+    <div *ngFor="let auction of auctions" class="col-lg-2 col-md-3 col-sm-6">
+      <app-auction-card [auction]="auction"></app-auction-card>
+    </div>
+  </div>
+</div>
