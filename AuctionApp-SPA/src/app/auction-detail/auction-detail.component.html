@@ -10,9 +10,12 @@
             <strong>Lance inicial:</strong>
             <p>{{auction?.initialValue}}</p>
             <strong>Novo ou usado:</strong>
-            <p>{{auction?.isNew}}</p>
-            <strong>Duração do leilão:</strong>
-            <p>{{formatDate(auction?.initialDate)}} até {{formatDate(auction?.finalDate)}}</p>
+            <p>{{formatStatusAuction(auction?.isNew)}}</p>
+            <strong>Abertura do leilão:</strong>
+            <p>{{formatDate(auction?.initialDate)}}</p>
+            <strong>Encerramento do leilão:</strong>
+            <p>{{formatDate(auction?.finalDate)}}</p>
+            <button class="btn btn-danger"><i class="fa fa-times" (click)="exclude()"></i> Excluir leilão</button>
           </div>
         </div>
       </div>
@@ -22,14 +25,27 @@
         <div class="card header">
             <h2>Últimos lances:</h2>
         </div>
-        <div class="card-body">
-
-        </div>
-        <div class="card-footer">
+        <div class="card-body scrollable">
           <div>
-              <input id="number" type="number" min=0 >
-            <button class="btn btn-primary">Dê seu lance</button>
+              <table class="table table-list">
+                  <thead>
+                      <tr>
+                          <th>Valor do lance</th>
+                          <th>Data</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let auctionBid of auction?.auctionBids">
+                          <td>{{auctionBid?.value}}</td>
+                          <td>{{formatDate(auctionBid?.dateOfBid)}}</td>
+                      </tr>
+                  </tbody>
+              </table>   
+            </div>
           </div>
+        <hr>
+        <div class="card-footer">
+          <app-auctionbid-create></app-auctionbid-create>
         </div>
       </div>
     </div>

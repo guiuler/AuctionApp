@@ -1,0 +1,12 @@
+<div>
+  <form #registerForm="ngForm" (ngSubmit)="create()">
+    <div class="row">
+      <div class="col-sm-6">
+          <input id="number" type="number" min=0 [(ngModel)]="model.value" [ngModelOptions]="{standalone: true}" placeholder="0.00">
+      </div>
+      <div class="col-sm-6">
+          <button class="btn btn-success" type="submit"><i class="fa fa-plus"></i> Dê seu lance</button>
+      </div>    
+    </div>
+  </form>
+</div>

@@ -7,5 +7,6 @@ export interface Auction {
     isNew: boolean;
     initialDate: Date;
     finalDate: Date;
-    bids: AuctionBid[];
+    userId: number;
+    auctionBids: AuctionBid[];
 }

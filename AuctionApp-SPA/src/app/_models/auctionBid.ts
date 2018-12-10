@@ -3,4 +3,5 @@ export interface AuctionBid {
     value: number;
     dateOfBid: Date;
     auctionId: number;
+    userId: number;
 }

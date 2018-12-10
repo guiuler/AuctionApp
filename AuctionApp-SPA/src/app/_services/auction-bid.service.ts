@@ -21,4 +21,10 @@ export class AuctionBidService {
     return this.http.get<AuctionBid>(this.baseUrl + 'auctionbids/' + id);
   }
 
+  createAuctionBid(model: AuctionBid, userId: number, auctionId: number) {
+    model.auctionId = auctionId;
+    model.userId = userId;
+    return this.http.post(this.baseUrl + 'auctionbids', model);
+  }
+
 }

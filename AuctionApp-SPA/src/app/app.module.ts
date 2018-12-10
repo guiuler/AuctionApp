@@ -24,6 +24,7 @@ import { AuctionDetailComponent } from './auction-detail/auction-detail.componen
 import { UserService } from './_services/user.service';
 import { AuctionCreateComponent } from './auction-create/auction-create.component';
 import { UsersEditComponent } from './users-edit/users-edit.component';
+import { AuctionbidCreateComponent } from './auctionbid-create/auctionbid-create.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -41,7 +42,8 @@ export function tokenGetter() {
       AuctionCardComponent,
       AuctionDetailComponent,
       AuctionCreateComponent,
-      UsersEditComponent
+      UsersEditComponent,
+      AuctionbidCreateComponent
    ],
    imports: [
       BrowserModule,

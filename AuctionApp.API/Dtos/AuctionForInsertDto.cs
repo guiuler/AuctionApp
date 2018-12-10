@@ -1,32 +1,32 @@
 using System;
 using System.Collections.Generic;
-using AuctionApp.API.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace AuctionApp.API.Dtos
 {
-    public class AuctionForDetailedDto
+    public class AuctionForInsertDto
     {
-        // PK
-        public int Id { get; set; }
-
+        [Required]
         // Nome do leilão
         public string Name { get; set; }
-
+        
+        [Required]
         // Valor inicial do leilão
         public double InitialValue { get; set; }
 
+        [Required]
         // Produto do leilão é usado ou novo
-        public int IsNew { get; set; }
+        public bool IsNew { get; set; }
 
+        [Required]
         // Data de início do leilão
         public DateTime InitialDate { get; set; }
 
+        [Required]
         // Data final do leilão
         public DateTime FinalDate { get; set; }
 
-        public int UserId { get; set; }
-
         // Lista de lances cadastrados para o leilão
-        public ICollection<AuctionBidForListDto> AuctionBids { get; set; }
+        public int UserId { get; set; }
     }
 }

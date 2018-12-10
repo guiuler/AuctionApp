@@ -71,6 +71,30 @@ namespace AuctionApp.API.Data
             return auctionBids;
         }
 
+        public async Task<Auction> InsertAuction(Auction auction)
+        {  
+            await _context.Auctions.AddAsync(auction);
+            await _context.SaveChangesAsync();
+
+            return auction;
+        }
+
+        public async Task<AuctionBid> InsertAuctionBid(AuctionBid auctionBid)
+        {  
+            await _context.AuctionBids.AddAsync(auctionBid);
+            await _context.SaveChangesAsync();
+
+            return auctionBid;
+        }
+
+        public async Task<Auction> DeleteAuction (Auction auction)
+        {
+            _context.Auctions.Remove(auction);
+            await _context.SaveChangesAsync();
+
+            return auction;
+        }
+
         public async Task<bool> SaveAll()
         {
             return await _context.SaveChangesAsync() > 0;

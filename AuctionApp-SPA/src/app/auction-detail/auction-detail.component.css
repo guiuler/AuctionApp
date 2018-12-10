@@ -13,3 +13,8 @@
     background-color: #fff;
     border-top: none;
 }
+
+.scrollable {
+    overflow-y: auto;
+    height: 690px;
+}

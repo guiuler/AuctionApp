@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
-using AuctionApp.API.Models;
 
 namespace AuctionApp.API.Dtos
 {
-    public class AuctionForDetailedDto
+    public class AuctionForDeleteDto
     {
-        // PK
+         // PK
         public int Id { get; set; }
 
         // Nome do leilão
@@ -25,8 +23,5 @@ namespace AuctionApp.API.Dtos
         public DateTime FinalDate { get; set; }
 
         public int UserId { get; set; }
-
-        // Lista de lances cadastrados para o leilão
-        public ICollection<AuctionBidForListDto> AuctionBids { get; set; }
     }
 }

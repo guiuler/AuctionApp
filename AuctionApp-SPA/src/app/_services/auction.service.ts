@@ -20,7 +20,17 @@ getAuction(id): Observable<Auction> {
   return this.http.get<Auction>(this.baseUrl + 'auctions/' + id);
 }
 
-createAuction(model: any) {
+createAuction(model: Auction, idUser: number) {
+  if (model.isNew) {
+    model.isNew = true;
+  } else {
+    model.isNew = false;
+  }
+  model.userId = idUser;
   return this.http.post(this.baseUrl + 'auctions', model);
+}
+
+deleteAuction(id) {
+  return this.http.delete(this.baseUrl + 'auctions/' + id);
 }
 }

@@ -16,6 +16,10 @@ namespace AuctionApp.API.Data
         Task<Auction> GetAuction(int id);
         Task<IEnumerable<AuctionBid>> GetAuctionBids();
         Task<AuctionBid> GetAuctionBid(int id);
+        Task<AuctionBid> InsertAuctionBid(AuctionBid auctionBid);
+        Task<Auction> InsertAuction(Auction auction);
+
+        Task<Auction> DeleteAuction (Auction auction);
 
     }
 }

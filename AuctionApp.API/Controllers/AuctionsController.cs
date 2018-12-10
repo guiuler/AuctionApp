@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AuctionApp.API.Data;
 using AuctionApp.API.Dtos;
+using AuctionApp.API.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -45,18 +46,35 @@ namespace AuctionApp.API.Controllers
             return Ok(auctionToReturn);
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> AddAuction(AuctionForInsertDto auctionForCreationDto)
         {
-            _repo.Add(value);
+            var userFromRepo = await _repo.GetUser(auctionForCreationDto.UserId);
+
+            if (!userFromRepo.IsAdministrator)
+                return Unauthorized();
+
+            var auction = _mapper.Map<Auction>(auctionForCreationDto);
+
+            auction.User = userFromRepo;
+
+            var createdAuction = await _repo.InsertAuction(auction);
+
+            return Ok(createdAuction);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAuction(int id)
         {
-            
+            var auction = await _repo.GetAuction(id);
+
+            if (auction.AuctionBids != null)
+                return Unauthorized("Não é possível remover leilões com lances cadastrados");
+
+            await _repo.DeleteAuction(auction);
+
+            return Ok(auction);
         }
+
     }
 }

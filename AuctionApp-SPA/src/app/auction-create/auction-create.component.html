@@ -6,7 +6,7 @@
               <hr>
             
               <div class="form-group">
-                <input type="text" class="form-control" required name="name" [(ngModel)]="model.name" placeholder="Nome">
+                <input type="text" class="form-control" required name="name" [(ngModel)]="model.Name" placeholder="Nome">
               </div>
             
               <div class="form-group">
@@ -14,18 +14,18 @@
               </div>
             
               <div class="form-group">
-                  <label>Qual o estado do produto? <select name="isNew" [(ngModel)]="model.isnew">
-                      <option value="1">Novo</option>
-                      <option value="0">Usado</option>
+                  <label>Qual o estado do produto? <select name="isNew" [(ngModel)]="model.isNew">
+                      <option selected value=1>Novo</option>
+                      <option value=0>Usado</option>
                     </select></label>
               </div>
             
               <div class="form-group">
-                <input type="datetime" class="form-control" required name="initialDate" [(ngModel)]="model.initialdate" placeholder="Data de abertura">
+                <input type="datetime" class="form-control" required name="initialDate" [(ngModel)]="model.initialDate" placeholder="Data de abertura">
               </div>
             
               <div class="form-group">
-                  <input type="datetime" class="form-control" required name="finalDate" [(ngModel)]="model.finaldate" placeholder="Data de finalização">
+                  <input type="datetime" class="form-control" required name="finalDate" [(ngModel)]="model.finalDate" placeholder="Data de finalização">
                 </div>
              
               <div class="form-group text-center">

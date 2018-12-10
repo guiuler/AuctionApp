@@ -26,6 +26,8 @@ namespace AuctionApp.API.Dtos
         // Verifica se o usuário não foi excluído
         public bool IsActive { get; set; }
 
+        public int UserId { get; set; }
+
         // Lista de leilões cadastrados pelo usuário
         public ICollection<AuctionForListDto> Auctions { get; set; }
 
