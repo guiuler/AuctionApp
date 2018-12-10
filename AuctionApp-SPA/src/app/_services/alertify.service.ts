@@ -22,7 +22,7 @@ export class AlertifyService {
         alertify.success(message);
     }
 
-    error(message: string) {
+    error(message) {
         alertify.error(message);
     }
 

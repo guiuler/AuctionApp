@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-register',

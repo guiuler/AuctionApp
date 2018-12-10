@@ -19,6 +19,8 @@ namespace AuctionApp.API.Dtos
         public string Password { get; set; }
 
         [Required]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "Seu CPF deve conter 11 dígitos")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Seu CPF deve conter apenas números")]
         public string Cpf { get; set; }
 
         [Required]

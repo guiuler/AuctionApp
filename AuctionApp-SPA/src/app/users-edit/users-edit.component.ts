@@ -3,7 +3,7 @@ import { User } from '../_models/user';
 import { UserService } from '../_services/user.service';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
-import { DeactivateUserComponent } from '../deactivate-user/deactivate-user.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-edit',
@@ -13,7 +13,7 @@ import { DeactivateUserComponent } from '../deactivate-user/deactivate-user.comp
 export class UsersEditComponent implements OnInit {
   user: User;
   constructor(private userService: UserService, private authService: AuthService, private alertify: AlertifyService,
-    private deactivateUser: DeactivateUserComponent) { }
+     private router: Router) { }
 
   ngOnInit() {
     this.loadUser();
@@ -28,7 +28,17 @@ export class UsersEditComponent implements OnInit {
   }
 
   deactivate() {
-    this.deactivateUser.deactivate(this.authService.decodedToken.nameid);
+
+    this.alertify.confirm('Ao desativar sua conta, você não poderá reativa-la. Deseja continuar?', () => {
+      this.user.isActive = false;
+      this.userService.updateUser(this.authService.decodedToken.nameid, this.user).subscribe(next => {
+        this.router.navigate(['/home']);
+        localStorage.removeItem('token');
+        this.alertify.success('Usuário desativado');
+      }, error => {
+        this.alertify.error(error);
+      });
+    });
   }
 
   convertStatusToText(status: boolean): string {

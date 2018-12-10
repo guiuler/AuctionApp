@@ -27,15 +27,15 @@ getUser(id): Observable<User> {
   return this.http.get<User>(this.baseUrl + 'users/' + id);
 }
 
-putUser(user: User): Observable<User> {
-  return this.http.put<User>(this.baseUrl + 'users/' + user.id, user);
+updateUser(id: number, user: User): Observable<User> {
+  return this.http.put<User>(this.baseUrl + 'users/' + id, user);
 }
 
-deactivateUser(id) {
+/*deactivateUser(id) {
   this.getUser(id).subscribe((user: User) => {
     this.user = user;
     this.user.isActive = false;
-    this.putUser(this.user);
+    this.putUser(id, this.user);
   });
-}
+}*/
 }

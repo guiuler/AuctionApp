@@ -14,6 +14,7 @@ namespace AuctionApp.API.Helpers
             CreateMap<Auction, AuctionForDetailedDto>();
             CreateMap<AuctionBid, AuctionBidForListDto>();
             CreateMap<AuctionBid, AuctionBidForDetailedDto>();
+            CreateMap<UserForUpdateDto, User>();
         }
         
     }

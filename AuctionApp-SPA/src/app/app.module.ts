@@ -22,7 +22,6 @@ import { AuctionService } from './_services/auction.service';
 import { AuctionCardComponent } from './cards/auction-card/auction-card.component';
 import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
 import { UserService } from './_services/user.service';
-import { DeactivateUserComponent } from './deactivate-user/deactivate-user.component';
 import { AuctionCreateComponent } from './auction-create/auction-create.component';
 import { UsersEditComponent } from './users-edit/users-edit.component';
 
@@ -41,7 +40,6 @@ export function tokenGetter() {
       UsersComponent,
       AuctionCardComponent,
       AuctionDetailComponent,
-      DeactivateUserComponent,
       AuctionCreateComponent,
       UsersEditComponent
    ],
@@ -65,8 +63,7 @@ export function tokenGetter() {
       AlertifyService,
       AuthGuard,
       AuctionService,
-      UserService,
-      DeactivateUserComponent
+      UserService
    ],
    bootstrap: [
       AppComponent
