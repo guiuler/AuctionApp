@@ -52,9 +52,15 @@ namespace AuctionApp.API.Controllers
         {
             var userFromRepo = await _repo.GetUser(auctionBidForInsertDto.UserId);
             var auctionFromRepo = await _repo.GetAuction(auctionBidForInsertDto.AuctionId);
+            var maxBid = 0.00;
                                
             var auctionBid = _mapper.Map<AuctionBid>(auctionBidForInsertDto);
-            var maxBid = auctionFromRepo.AuctionBids.Max(x => x.Value);
+            if (auctionFromRepo.AuctionBids?.Count > 0){
+                maxBid = auctionFromRepo.AuctionBids.Max(x => x.Value);
+            }
+            else{
+                maxBid = auctionFromRepo.InitialValue;
+            }
             
             if(maxBid >= auctionBid.Value)
                 return Unauthorized("Não pode realizar lances menores que o lance atual");
