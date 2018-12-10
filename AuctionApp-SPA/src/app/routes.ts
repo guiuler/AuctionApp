@@ -5,6 +5,9 @@ import { AuctionbidComponent } from './auctionbid/auctionbid.component';
 import { UsersComponent } from './users/users.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
+import { DeactivateUserComponent } from './deactivate-user/deactivate-user.component';
+import { AuctionCreateComponent } from './auction-create/auction-create.component';
+import { UsersEditComponent } from './users-edit/users-edit.component';
 
 export const appRoutes: Routes = [
     // ORDEM DAS ROTAS É IMPORTANTE
@@ -16,8 +19,10 @@ export const appRoutes: Routes = [
         canActivate: [AuthGuard],
         children: [
             { path: 'auctions', component: AuctionComponent},
+            { path: 'auctions/create', component: AuctionCreateComponent},
             { path: 'auctions/:id', component: AuctionDetailComponent},
-            { path: 'auctionbids', component: AuctionbidComponent}
+            { path: 'user/profile', component: UsersEditComponent},
+            { path: 'auctionbids', component: AuctionbidComponent},
         ]
     },
     { path: '**', redirectTo: '', pathMatch: 'full'}

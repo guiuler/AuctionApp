@@ -1,5 +1,11 @@
 <div class="container">
   <br>
+  <h2>Leilões Ativos</h2>
+  <hr>
+  <div class="row">
+    <button class="btn btn-success" [routerLink]="['/auctions/create']"><i class="fa fa-plus"></i> Adicionar um novo leilão</button>
+  </div>
+  <br>
   <div class="row">
     <div *ngFor="let auction of auctions" class="col-lg-2 col-md-3 col-sm-6">
       <app-auction-card [auction]="auction"></app-auction-card>

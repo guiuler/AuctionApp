@@ -23,6 +23,8 @@ import { AuctionCardComponent } from './cards/auction-card/auction-card.componen
 import { AuctionDetailComponent } from './auction-detail/auction-detail.component';
 import { UserService } from './_services/user.service';
 import { DeactivateUserComponent } from './deactivate-user/deactivate-user.component';
+import { AuctionCreateComponent } from './auction-create/auction-create.component';
+import { UsersEditComponent } from './users-edit/users-edit.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -39,7 +41,9 @@ export function tokenGetter() {
       UsersComponent,
       AuctionCardComponent,
       AuctionDetailComponent,
-      DeactivateUserComponent
+      DeactivateUserComponent,
+      AuctionCreateComponent,
+      UsersEditComponent
    ],
    imports: [
       BrowserModule,
@@ -61,7 +65,8 @@ export function tokenGetter() {
       AlertifyService,
       AuthGuard,
       AuctionService,
-      UserService
+      UserService,
+      DeactivateUserComponent
    ],
    bootstrap: [
       AppComponent

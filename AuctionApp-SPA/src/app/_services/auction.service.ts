@@ -19,4 +19,8 @@ getAuctions(): Observable<Auction[]> {
 getAuction(id): Observable<Auction> {
   return this.http.get<Auction>(this.baseUrl + 'auctions/' + id);
 }
+
+createAuction(model: any) {
+  return this.http.post(this.baseUrl + 'auctions', model);
+}
 }

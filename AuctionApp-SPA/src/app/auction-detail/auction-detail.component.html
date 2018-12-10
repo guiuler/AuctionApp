@@ -12,7 +12,7 @@
             <strong>Novo ou usado:</strong>
             <p>{{auction?.isNew}}</p>
             <strong>Duração do leilão:</strong>
-            <p>{{auction?.initialDate}} até {{auction?.finalDate}}</p>
+            <p>{{formatDate(auction?.initialDate)}} até {{formatDate(auction?.finalDate)}}</p>
           </div>
         </div>
       </div>

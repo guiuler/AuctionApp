@@ -40,5 +40,10 @@ namespace AuctionApp.API.Controllers
 
             return Ok(userToReturn);
         }
+
+        [HttpPut("{id}")]
+        public void PutUser(Models.User user){
+            _repo.Update(user);
+        }
     }
 }

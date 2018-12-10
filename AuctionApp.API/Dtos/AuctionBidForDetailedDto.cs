@@ -12,5 +12,7 @@ namespace AuctionApp.API.Dtos
 
         // Data do lance
         public DateTime DateOfBid { get; set; }
+
+        public int AuctionId { get; set; }  
     }
 }

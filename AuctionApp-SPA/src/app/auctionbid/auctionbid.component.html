@@ -1,3 +1,26 @@
-<p>
-  auctionbid works!
-</p>
+<div class="container">
+    <br>
+    <h2>Meus Lances</h2>
+    <div class="row">
+      <div>
+          <table class="table table-list">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Valor do lance</th>
+                      <th>Data</th>
+                      <th>Leilão</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let auctionBid of auctionBid">
+                      <td>{{auctionBid?.id}}</td>
+                      <td>{{auctionBid?.value}}</td>
+                      <td>{{formatDate(auctionBid?.dateOfBid)}}</td>
+                      <td><button class="btn btn-success" [routerLink]="['/auctions/', auctionBid?.auctionId]">Ir para o leilão</button></td>
+                  </tr>
+              </tbody>
+          </table>   
+      </div>
+    </div>
+  </div>
