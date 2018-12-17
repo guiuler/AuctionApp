@@ -30,7 +30,7 @@ namespace AuctionApp.API.Controllers
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
             if (await _repo.UserExists(userForRegisterDto.Username))
-                return BadRequest("Username already exists");
+                return BadRequest("Usuário já cadastrado");
 
             var userToCreate = new User
             {

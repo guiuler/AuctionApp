@@ -14,18 +14,20 @@ namespace AuctionApp.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IAuctionRepository _repo;
+        private readonly IUserRepository _userRepo;
+        private readonly IGenericRepository _genericRepo;
         private readonly IMapper _mapper;
-        public UsersController(IAuctionRepository repo, IMapper mapper)
+        public UsersController(IUserRepository userRepo, IGenericRepository genericRepo, IMapper mapper)
         {
             _mapper = mapper;
-            _repo = repo;
+            _userRepo = userRepo;
+            _genericRepo = genericRepo;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var users = await _repo.GetUsers();
+            var users = await _userRepo.GetUsers();
 
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
 
@@ -35,7 +37,7 @@ namespace AuctionApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
-            var user = await _repo.GetUser(id);
+            var user = await _userRepo.GetUser(id);
 
             var userToReturn = _mapper.Map<UserForDetailedDto>(user);
 
@@ -43,15 +45,16 @@ namespace AuctionApp.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto){
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
+        {
             if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            var userFromRepo = await _repo.GetUser(id);
+            var userFromRepo = await _userRepo.GetUser(id);
 
             _mapper.Map(userForUpdateDto, userFromRepo);
 
-            if (await _repo.SaveAll())
+            if (await _genericRepo.SaveAll())
                 return NoContent();
 
             throw new System.Exception($"Falha ao salvar o usuário {id}");

@@ -16,19 +16,21 @@ namespace AuctionApp.API.Controllers
     [ApiController]
     public class AuctionsController : ControllerBase
     {
-        private readonly IAuctionRepository _repo;
+        private readonly IAuctionRepository _auctionRepo;
+        private readonly IUserRepository _userRepo;
         private readonly IMapper _mapper;
-        public AuctionsController(IAuctionRepository repo, IMapper mapper)
+        public AuctionsController(IAuctionRepository auctionRepo, IUserRepository userRepo, IMapper mapper)
         {
             _mapper = mapper;
-            _repo = repo;
+            _auctionRepo = auctionRepo;
+            _userRepo = userRepo;
         }
 
         // GET api/auctions
         [HttpGet]
         public async Task<IActionResult> GetAuctions()
         {
-            var auctions = await _repo.GetAuctions();
+            var auctions = await _auctionRepo.GetAuctions();
 
             var auctionsToReturn = _mapper.Map<IEnumerable<AuctionForListDto>>(auctions);
 
@@ -39,7 +41,7 @@ namespace AuctionApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAuction(int id)
         {
-            var auction = await _repo.GetAuction(id);
+            var auction = await _auctionRepo.GetAuction(id);
 
             var auctionToReturn = _mapper.Map<AuctionForDetailedDto>(auction);
 
@@ -49,7 +51,7 @@ namespace AuctionApp.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAuction(AuctionForInsertDto auctionForCreationDto)
         {
-            var userFromRepo = await _repo.GetUser(auctionForCreationDto.UserId);
+            var userFromRepo = await _userRepo.GetUser(auctionForCreationDto.UserId);
 
             if (!userFromRepo.IsAdministrator)
                 return Unauthorized();
@@ -58,7 +60,7 @@ namespace AuctionApp.API.Controllers
 
             auction.User = userFromRepo;
 
-            var createdAuction = await _repo.InsertAuction(auction);
+            var createdAuction = await _auctionRepo.InsertAuction(auction);
 
             return Ok(createdAuction);
         }
@@ -66,15 +68,14 @@ namespace AuctionApp.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuction(int id)
         {
-            var auction = await _repo.GetAuction(id);
+            var auction = await _auctionRepo.GetAuction(id);
 
             if (auction.AuctionBids != null)
                 return Unauthorized("Não é possível remover leilões com lances cadastrados");
 
-            await _repo.DeleteAuction(auction);
+            await _auctionRepo.DeleteAuction(auction);
 
             return Ok(auction);
         }
-
     }
 }
